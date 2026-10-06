@@ -26,6 +26,10 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
+        with:
+          # 首次运行自动启用 Pages（使用 GitHub Actions 作为来源），
+          # 避免因仓库未开启 Pages 而报 "Get Pages site failed: Not Found"。
+          enablement: true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
