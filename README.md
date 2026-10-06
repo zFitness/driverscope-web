@@ -28,9 +28,13 @@ python3 -m http.server 8080
 
 ## 下载与 Release 的关系
 
-源码在私有仓库 `zFitness/DriverScope` 构建，其 Actions 将签名 APK 与
-`SHA256SUMS.txt` 跨仓库发布到**本公开仓库的 Releases**。本仓库公开，因此
-Releases API 可被站点直接读取，用于展示版本、大小与校验值。
+源码在私有仓库 `zFitness/DriverScope` 构建，签名 APK 与 `SHA256SUMS.txt`
+发布到**本公开仓库的 Releases**（公开仓库的 Release 任何人可下载）。本仓库公开，
+因此 Releases API 可被站点直接读取，用于展示版本、大小与校验值。
+
+发布方式：因私有仓库 Actions 计费受限，改用**本地脚本发布**（零 CI）：
+在 `DriverScope` 仓库执行 `scripts/release.sh <版本>`，本地构建签名包并推送到
+本仓库 Release。详见该脚本头部注释。
 
 站点读取 `https://api.github.com/repos/zFitness/driverscope-web/releases/latest`；
 无 Release 或网络受限时自动回退为静态文案与 Release 链接。
