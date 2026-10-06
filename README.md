@@ -1,45 +1,60 @@
-# Vk Driver Lab · 介绍网站
+# Vk Driver Lab
 
-Vk Driver Lab 的官方介绍与下载引导站点，纯静态（零构建），部署在 GitHub Pages。
+**Inspect, compare, and test Android Vulkan GPU drivers.**
+查看、下载、导入、比较并实测 Android 平台的 Vulkan 图形驱动。
 
-## 本地预览
+[官网 Website](https://zfitness.github.io/driverscope-web/) · [下载 Download](https://github.com/zFitness/driverscope-web/releases/latest)
+
+---
+
+## 中文
+
+Vk Driver Lab 是一款运行于 Android 平台的 Vulkan 图形驱动分析与实测工具，面向使用模拟器游玩游戏的玩家与移动图形技术爱好者。全部功能以非 root 方式实现，不修改系统分区，不替代系统自带驱动。
+
+**功能**
+- 设备与驱动信息采集：SoC、CPU、内存、GPU、Android 版本、驱动名称/厂商/版本等
+- Vulkan 能力解析：扩展、Vulkan 1.0–1.4 核心功能、设备限制、队列族、内存与图像格式
+- 驱动库管理：统一管理系统原厂、下载与导入驱动
+- 内置源下载与代理加速：按平台筛选下载，支持 GitHub 代理前缀
+- 驱动包导入：导入 zip / so，安全解压并解析元数据
+- 驱动对比：并排对比版本、扩展数量、显存与测试结果
+- 图形测试与离屏跑分：三角形、立方体、vkmark 等用例，回显实际加载的驱动标识
+- 设置与诊断导出：语言、代理、问题反馈与原始数据导出
+
+**系统要求**：Android 7.0 (API 24)+ · arm64 · 支持 Vulkan · Adreno/骁龙 · 2GB+ 内存 · 无需 root
+
+**技术栈**：Kotlin + C++ (NDK) · Jetpack Compose · 内置离线中文字典 · 签名 APK + SHA256
+
+---
+
+## English
+
+Vk Driver Lab is an Android tool for inspecting, downloading, importing, comparing, and testing Vulkan GPU drivers — built for emulator gamers and mobile graphics enthusiasts. Everything is non-root: it never modifies system partitions or replaces the stock driver.
+
+**Features**
+- Device & driver info: SoC, CPU, memory, GPU, Android version, driver name/vendor/version
+- Vulkan capability parsing: extensions, Vulkan 1.0–1.4 core features, limits, queue families, memory, image formats
+- Driver library: unified model for system, downloaded, and imported drivers
+- Built-in source & proxy: filter and download by platform, with GitHub proxy support
+- Driver import: safely unpack and parse zip / so packages
+- Driver comparison: side-by-side version, extension count, memory, and test results
+- Graphics tests & offscreen benchmark: triangle, cube, vkmark, with loaded-driver echo
+- Settings & diagnostics: language, proxy, feedback, and raw data export
+
+**Requirements**: Android 7.0 (API 24)+ · arm64 · Vulkan · Adreno/Snapdragon · 2GB+ RAM · no root
+
+**Tech**: Kotlin + C++ (NDK) · Jetpack Compose · offline Chinese dictionary · signed APK + SHA256
+
+---
+
+## 本仓库 / This repo
+
+本仓库是 Vk Driver Lab 的介绍站点（纯静态，部署于 GitHub Pages）与**公开发布锚点**。应用源码位于私有仓库，CI 受限故改由本地脚本构建签名 APK 并发布到本仓库的 [Releases](https://github.com/zFitness/driverscope-web/releases)。
+
+This repo hosts the Vk Driver Lab landing page (static, on GitHub Pages) and the **public release anchor**. The app source lives in a private repository; signed APKs are built locally and published to this repo's [Releases](https://github.com/zFitness/driverscope-web/releases).
 
 ```bash
-python3 -m http.server 8080
-# 打开 http://localhost:8080
+python3 -m http.server 8080   # 本地预览 / preview locally
 ```
 
-## 结构
-
-```
-.
-├── index.html                  # 单页：Hero / 功能 / 截图 / 要求 / 下载
-├── styles.css                  # 靛蓝主色 + 中性 Surface，浅色优先并适配深色
-├── app.js                      # 运行时读取本仓库 Release 最新版本与 SHA256
-└── assets/
-    ├── brand/logo.webp|png     # 站点 Logo
-    └── screenshots/*.webp      # 9 张应用截图（由软著截图压缩而来）
-```
-
-## 部署
-
-推送到 `main` 后由 `.github/workflows/pages.yml` 自动发布到 GitHub Pages。
-首次需在仓库 Settings → Pages → Source 选择 **GitHub Actions**。
-
-## 下载与 Release 的关系
-
-源码在私有仓库 `zFitness/DriverScope` 构建，签名 APK 与 `SHA256SUMS.txt`
-发布到**本公开仓库的 Releases**（公开仓库的 Release 任何人可下载）。本仓库公开，
-因此 Releases API 可被站点直接读取，用于展示版本、大小与校验值。
-
-发布方式：因私有仓库 Actions 计费受限，改用**本地脚本发布**（零 CI）：
-在 `DriverScope` 仓库执行 `scripts/release.sh <版本>`，本地构建签名包并推送到
-本仓库 Release。详见该脚本头部注释。
-
-站点读取 `https://api.github.com/repos/zFitness/driverscope-web/releases/latest`；
-无 Release 或网络受限时自动回退为静态文案与 Release 链接。
-
-## 内容来源
-
-文案与截图取自 `DriverScope/my-docs/软件著作权申请资料`（业务理解、申请表信息、
-用户截图）与 `设计文档/UI设计`。
+© 2026 zFitness · Vk Driver Lab

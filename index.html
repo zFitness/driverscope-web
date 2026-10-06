@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vk Driver Lab · Android Vulkan 驱动分析工具</title>
-  <meta name="description" content="Vk Driver Lab 是一款运行于 Android 平台的 Vulkan 图形驱动分析与实测工具：非 root 查看设备驱动能力，下载、导入、比较开源驱动，并运行图形测试与离屏跑分。" />
+  <title>Vk Driver Lab · Vulkan driver analysis for Android</title>
+  <meta name="description" content="Vk Driver Lab is a Vulkan graphics driver analysis and benchmarking tool for Android: inspect driver capabilities without root, download, import and compare open-source drivers, and run graphics tests and offscreen benchmarks." />
   <meta property="og:title" content="Vk Driver Lab" />
-  <meta property="og:description" content="查看、下载、导入、比较并实测 Android 平台的 Vulkan 图形驱动。" />
+  <meta property="og:description" content="Inspect, download, import, compare and benchmark Vulkan graphics drivers on Android." />
   <meta property="og:type" content="website" />
   <link rel="icon" href="assets/brand/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,11 +22,12 @@
         <span>Vk Driver Lab</span>
       </a>
       <nav class="nav-links">
-        <a href="#features">功能</a>
-        <a href="#shots">截图</a>
-        <a href="#requirements">要求</a>
-        <a href="#download">下载</a>
+        <a href="#features" data-i18n="nav.features">Features</a>
+        <a href="#shots" data-i18n="nav.shots">Screenshots</a>
+        <a href="#requirements" data-i18n="nav.requirements">Requirements</a>
+        <a href="#download" data-i18n="nav.download">Download</a>
         <a class="nav-gh" href="https://github.com/zFitness/DriverScope" target="_blank" rel="noopener">GitHub</a>
+        <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language">中文</button>
       </nav>
     </div>
   </header>
@@ -35,61 +36,62 @@
     <section class="hero">
       <div class="container hero-inner">
         <div class="hero-copy">
-          <span class="badge">Android · Vulkan · 非 root</span>
+          <span class="badge" data-i18n="hero.badge">Android · Vulkan · No root</span>
           <h1>Vk Driver Lab</h1>
-          <p class="tagline">Inspect, compare, and test GPU drivers.</p>
-          <p class="lede">
-            一款运行于 Android 平台的 Vulkan 图形驱动分析与实测工具。看清设备当前使用的驱动支持哪些版本与扩展，
-            下载、导入、比较候选驱动，并直接跑图形测试与离屏跑分。
+          <p class="tagline" data-i18n="hero.tagline">Inspect, compare, and test GPU drivers.</p>
+          <p class="lede" data-i18n="hero.lede">
+            A Vulkan graphics driver analysis and benchmarking tool for Android. See which versions and extensions
+            your device's current driver supports, download, import and compare candidate drivers, then run graphics
+            tests and offscreen benchmarks directly.
           </p>
           <div class="actions">
-            <a id="hero-download" class="btn btn-primary" href="#download">下载最新版</a>
-            <a class="btn btn-ghost" href="#shots">查看截图</a>
+            <a id="hero-download" class="btn btn-primary" href="#download" data-i18n="hero.download">Download latest</a>
+            <a class="btn btn-ghost" href="#shots" data-i18n="hero.shots">View screenshots</a>
           </div>
-          <p class="hero-meta" id="hero-meta">面向 Adreno / 骁龙设备 · Android 7.0+</p>
+          <p class="hero-meta" id="hero-meta" data-i18n="hero.meta">For Adreno / Snapdragon devices · Android 7.0+</p>
         </div>
         <div class="hero-art">
-          <img src="assets/screenshots/01-首页.webp" alt="Vk Driver Lab 首页设备概览" width="360" height="800" />
+          <img src="assets/screenshots/01-首页.webp" alt="Vk Driver Lab home device overview" width="360" height="800" />
         </div>
       </div>
     </section>
 
     <section id="features" class="section">
       <div class="container">
-        <h2 class="section-title">功能</h2>
-        <p class="section-sub">以非 root 方式实现，不修改系统分区，不替代系统自带驱动。</p>
+        <h2 class="section-title" data-i18n="features.title">Features</h2>
+        <p class="section-sub" data-i18n="features.sub">Implemented without root. It never modifies system partitions or replaces the stock driver.</p>
         <div class="grid">
           <article class="card">
-            <h3>设备与驱动信息采集</h3>
-            <p>读取 SoC、CPU 核心数与频率、运行内存、GPU 型号与厂商、Android 版本、Linux GPU 设备节点，以及驱动名称、厂商、Vulkan API 版本、驱动版本与构建日期。</p>
+            <h3 data-i18n="feat.1.title">Device &amp; driver info</h3>
+            <p data-i18n="feat.1.desc">Reads SoC, CPU core count and frequency, RAM, GPU model and vendor, Android version, the Linux GPU device node, plus driver name, vendor, Vulkan API version, driver version and build date.</p>
           </article>
           <article class="card">
-            <h3>Vulkan 能力解析</h3>
-            <p>枚举实例与设备扩展并按用途分组，列出 Vulkan 1.0–1.4 核心功能支持情况，读取设备限制、队列族、内存堆与图像格式能力。</p>
+            <h3 data-i18n="feat.2.title">Vulkan capability analysis</h3>
+            <p data-i18n="feat.2.desc">Enumerates instance and device extensions grouped by purpose, lists Vulkan 1.0–1.4 core feature support, and reads device limits, queue families, memory heaps and image format capabilities.</p>
           </article>
           <article class="card">
-            <h3>驱动库管理</h3>
-            <p>以统一模型管理系统原厂驱动、下载驱动与导入驱动。系统驱动常驻且不可删除，支持勾选进入详情或对比。</p>
+            <h3 data-i18n="feat.3.title">Driver library</h3>
+            <p data-i18n="feat.3.desc">Manages stock, downloaded and imported drivers in one unified model. System drivers are always present and non-deletable; select any to open details or compare.</p>
           </article>
           <article class="card">
-            <h3>内置源下载与代理加速</h3>
-            <p>从内置开源驱动源按高通、天玑等分类筛选并下载，显示进度、大小与百分比，可切换内置 GitHub 代理前缀或自定义代理。</p>
+            <h3 data-i18n="feat.4.title">Built-in sources &amp; proxy</h3>
+            <p data-i18n="feat.4.desc">Browse and download from built-in open-source driver sources filtered by Qualcomm, Dimensity and more, with progress, size and percentage; switch the built-in GitHub proxy prefix or set a custom one.</p>
           </article>
           <article class="card">
-            <h3>驱动包导入与解析</h3>
-            <p>从系统文件选择器导入 zip 驱动包或 so 文件，安全解压、识别驱动文件与元数据，解析出库名、版本与扩展信息。</p>
+            <h3 data-i18n="feat.5.title">Driver package import</h3>
+            <p data-i18n="feat.5.desc">Import zip driver packages or .so files from the system file picker, extract them safely, identify driver files and metadata, and parse library name, version and extensions.</p>
           </article>
           <article class="card">
-            <h3>驱动对比</h3>
-            <p>并排对比两个驱动的版本号、扩展数量、能力规模、显存总量、一致性认证与各项测试结果，并对差异做可视化标注。</p>
+            <h3 data-i18n="feat.6.title">Driver comparison</h3>
+            <p data-i18n="feat.6.desc">Compare two drivers side by side across version, extension count, capability size, total VRAM, conformance and each test result, with visual highlighting of the differences.</p>
           </article>
           <article class="card">
-            <h3>图形测试与离屏跑分</h3>
-            <p>在指定驱动下运行三角形、立方体、vkmark 等用例，先回显实际加载到的驱动标识，再输出通过或失败、跑分与帧率。</p>
+            <h3 data-i18n="feat.7.title">Graphics tests &amp; benchmarks</h3>
+            <p data-i18n="feat.7.desc">Run triangle, cube, vkmark and other cases under a chosen driver; the actually loaded driver is echoed first, then pass/fail, score and frame rate.</p>
           </article>
           <article class="card">
-            <h3>设置与诊断导出</h3>
-            <p>提供语言与代理设置、问题反馈与开源软件说明，并支持复制或导出原始诊断数据，便于排查与反馈问题。</p>
+            <h3 data-i18n="feat.8.title">Settings &amp; diagnostics</h3>
+            <p data-i18n="feat.8.desc">Language and proxy settings, issue feedback and open-source notices, plus copy or export of raw diagnostic data for troubleshooting.</p>
           </article>
         </div>
       </div>
@@ -97,44 +99,48 @@
 
     <section id="shots" class="section section-alt">
       <div class="container">
-        <h2 class="section-title">截图</h2>
-        <p class="section-sub">从设备信息、驱动库到测试与对比的完整流程。</p>
+        <h2 class="section-title" data-i18n="shots.title">Screenshots</h2>
+        <p class="section-sub" data-i18n="shots.sub">The complete flow, from device info and the driver library to testing and comparison.</p>
         <div class="shots">
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/01-首页.webp" alt="首页设备概览" />
-            <figcaption>首页 · 设备概览</figcaption>
+            <img loading="lazy" src="assets/screenshots/01-首页.webp" alt="Home device overview" />
+            <figcaption data-i18n="cap.1">Home · Device overview</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/02-OpenGL详情.webp" alt="OpenGL 详情" />
-            <figcaption>OpenGL 详情</figcaption>
+            <img loading="lazy" src="assets/screenshots/02-OpenGL详情.webp" alt="OpenGL details" />
+            <figcaption data-i18n="cap.2">OpenGL details</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/03-驱动库.webp" alt="驱动库" />
-            <figcaption>驱动库</figcaption>
+            <img loading="lazy" src="assets/screenshots/03-驱动库.webp" alt="Driver library" />
+            <figcaption data-i18n="cap.3">Driver library</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/04-下载驱动.webp" alt="内置源下载" />
-            <figcaption>内置源下载</figcaption>
+            <img loading="lazy" src="assets/screenshots/04-下载驱动.webp" alt="Built-in source downloads" />
+            <figcaption data-i18n="cap.4">Built-in source downloads</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/05-导入本地驱动.webp" alt="导入本地驱动" />
-            <figcaption>导入本地驱动</figcaption>
+            <img loading="lazy" src="assets/screenshots/05-导入本地驱动.webp" alt="Import local driver" />
+            <figcaption data-i18n="cap.5">Import local driver</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/06-驱动详情.webp" alt="驱动详情" />
-            <figcaption>驱动详情</figcaption>
+            <img loading="lazy" src="assets/screenshots/06-驱动详情.webp" alt="Driver details" />
+            <figcaption data-i18n="cap.6">Driver details</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/07-驱动测试.webp" alt="图形测试与跑分" />
-            <figcaption>图形测试与跑分</figcaption>
+            <img loading="lazy" src="assets/screenshots/07-驱动测试.webp" alt="Graphics test and benchmark" />
+            <figcaption data-i18n="cap.7">Graphics test &amp; benchmark</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/08-驱动对比.webp" alt="驱动对比" />
-            <figcaption>驱动对比</figcaption>
+            <img loading="lazy" src="assets/screenshots/08-驱动对比.webp" alt="Driver comparison" />
+            <figcaption data-i18n="cap.8">Driver comparison</figcaption>
           </figure>
           <figure class="shot">
-            <img loading="lazy" src="assets/screenshots/09-设置.webp" alt="设置" />
-            <figcaption>设置</figcaption>
+            <img loading="lazy" src="assets/screenshots/09-设置.webp" alt="Settings" />
+            <figcaption data-i18n="cap.9">Settings</figcaption>
+          </figure>
+          <figure class="shot">
+            <img loading="lazy" src="assets/screenshots/10-上屏渲染.webp" alt="On-screen rendering" />
+            <figcaption data-i18n="cap.10">On-screen rendering</figcaption>
           </figure>
         </div>
       </div>
@@ -143,24 +149,24 @@
     <section id="requirements" class="section">
       <div class="container two-col">
         <div>
-          <h2 class="section-title">系统要求</h2>
+          <h2 class="section-title" data-i18n="req.title">System requirements</h2>
           <ul class="spec-list">
-            <li><span>系统</span><b>Android 7.0 (API 24) 及以上</b></li>
-            <li><span>架构</span><b>arm64</b></li>
-            <li><span>图形接口</span><b>支持 Vulkan</b></li>
-            <li><span>设备</span><b>Adreno / 骁龙（当前）</b></li>
-            <li><span>内存</span><b>2GB 以上</b></li>
-            <li><span>权限</span><b>无需 root</b></li>
+            <li><span data-i18n="req.os">OS</span><b data-i18n="req.osv">Android 7.0 (API 24) or later</b></li>
+            <li><span data-i18n="req.arch">Architecture</span><b data-i18n="req.archv">arm64</b></li>
+            <li><span data-i18n="req.api">Graphics API</span><b data-i18n="req.apiv">Vulkan support</b></li>
+            <li><span data-i18n="req.device">Device</span><b data-i18n="req.devicev">Adreno / Snapdragon (current)</b></li>
+            <li><span data-i18n="req.mem">Memory</span><b data-i18n="req.memv">2 GB or more</b></li>
+            <li><span data-i18n="req.perm">Permissions</span><b data-i18n="req.permv">No root required</b></li>
           </ul>
         </div>
         <div>
-          <h2 class="section-title">技术特点</h2>
+          <h2 class="section-title" data-i18n="tech.title">Technical highlights</h2>
           <ul class="spec-list">
-            <li><span>技术栈</span><b>Kotlin + C++ 混合</b></li>
-            <li><span>驱动查询</span><b>Native / NDK（Vulkan · EGL · GLES）</b></li>
-            <li><span>中文解释</span><b>内置离线字典，不联网</b></li>
-            <li><span>驱动导入</span><b>安全解压，本地解析元数据</b></li>
-            <li><span>发布</span><b>签名 APK + SHA256 校验</b></li>
+            <li><span data-i18n="tech.stack">Tech stack</span><b data-i18n="tech.stackv">Kotlin + C++ (hybrid)</b></li>
+            <li><span data-i18n="tech.query">Driver query</span><b data-i18n="tech.queryv">Native / NDK (Vulkan · EGL · GLES)</b></li>
+            <li><span data-i18n="tech.dict">Explanations</span><b data-i18n="tech.dictv">Built-in offline dictionary, no network</b></li>
+            <li><span data-i18n="tech.import">Driver import</span><b data-i18n="tech.importv">Safe extraction, local metadata parsing</b></li>
+            <li><span data-i18n="tech.release">Release</span><b data-i18n="tech.releasev">Signed APK + SHA256 verification</b></li>
           </ul>
         </div>
       </div>
@@ -168,12 +174,12 @@
 
     <section id="download" class="section section-alt">
       <div class="container download">
-        <h2 class="section-title">下载</h2>
-        <p class="section-sub">从 GitHub Release 获取最新签名安装包，并核对 SHA256。</p>
+        <h2 class="section-title" data-i18n="dl.title">Download</h2>
+        <p class="section-sub" data-i18n="dl.sub">Get the latest signed package from GitHub Releases and verify its SHA256.</p>
         <div class="download-card">
           <div class="download-info">
-            <p class="dl-version">最新版本 <b id="dl-version">—</b></p>
-            <p class="dl-file" id="dl-file">正在获取发布信息…</p>
+            <p class="dl-version"><span data-i18n="dl.latest">Latest version</span> <b id="dl-version">—</b></p>
+            <p class="dl-file" id="dl-file" data-i18n="dl.fetching">Fetching release info…</p>
             <p class="dl-meta" id="dl-meta"></p>
             <p class="dl-sha" id="dl-sha" hidden>
               <span>SHA256</span>
@@ -181,12 +187,12 @@
             </p>
           </div>
           <div class="download-actions">
-            <a id="dl-button" class="btn btn-primary" href="https://github.com/zFitness/driverscope-web/releases/latest" target="_blank" rel="noopener">前往下载</a>
-            <a class="btn btn-ghost" href="https://github.com/zFitness/driverscope-web/releases" target="_blank" rel="noopener">全部版本</a>
+            <a id="dl-button" class="btn btn-primary" href="https://github.com/zFitness/driverscope-web/releases/latest" target="_blank" rel="noopener" data-i18n="dl.go">Go to download</a>
+            <a class="btn btn-ghost" href="https://github.com/zFitness/driverscope-web/releases" target="_blank" rel="noopener" data-i18n="dl.all">All releases</a>
           </div>
         </div>
-        <p class="note">
-          国内访问 GitHub 可能较慢：可在应用内切换代理，或使用国内网盘镜像。安装前请用 <code>sha256sum</code> 或系统工具核对校验值。
+        <p class="note" data-i18n-html="dl.note">
+          GitHub may be slow to reach in some regions: switch the proxy inside the app, or use a local mirror. Before installing, verify the checksum with <code>sha256sum</code> or your system tools.
         </p>
       </div>
     </section>

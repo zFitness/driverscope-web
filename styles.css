@@ -103,6 +103,20 @@ img { max-width: 100%; display: block; }
 
 .nav-gh:hover { border-color: var(--primary); color: var(--primary); }
 
+.lang-toggle {
+  font: inherit;
+  font-size: 14px;
+  color: var(--text);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: border-color .15s ease, color .15s ease;
+}
+
+.lang-toggle:hover { border-color: var(--primary); color: var(--primary); }
+
 /* Hero */
 .hero { padding: 72px 0 40px; }
 
