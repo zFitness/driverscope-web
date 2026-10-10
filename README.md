@@ -24,6 +24,7 @@
 <p>
   <img src="assets/screenshots/home.webp" alt="Home screen" width="230" />
   <img src="assets/screenshots/library.webp" alt="Driver library" width="230" />
+  <img src="assets/screenshots/10-%E4%B8%8A%E5%B1%8F%E6%B8%B2%E6%9F%93.webp" alt="render" width="230" />
 </p>
 
 </div>
